@@ -10,6 +10,8 @@
 #'   CPUE is computed via `cpue()`.
 #' @param effort Optional numeric vector of effort. Required if `catch` is
 #'   provided.
+#' @param verbose Logical; print processing info? Default from
+#'   `getOption("fishr.verbose", FALSE)`.
 #' @param ... Additional arguments passed to `cpue()` when computing from
 #'   catch and effort (e.g., `method`, `gear_factor`).
 #'

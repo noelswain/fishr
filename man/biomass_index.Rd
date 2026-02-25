@@ -4,7 +4,14 @@
 \alias{biomass_index}
 \title{Calculate Biomass Index}
 \usage{
-biomass_index(cpue = NULL, area_swept, catch = NULL, effort = NULL, ...)
+biomass_index(
+  cpue = NULL,
+  area_swept,
+  catch = NULL,
+  effort = NULL,
+  verbose = getOption("fishr.verbose", default = FALSE),
+  ...
+)
 }
 \arguments{
 \item{cpue}{Numeric vector of CPUE values. If \code{catch} and \code{effort} are
@@ -17,6 +24,9 @@ CPUE is computed via \code{cpue()}.}
 
 \item{effort}{Optional numeric vector of effort. Required if \code{catch} is
 provided.}
+
+\item{verbose}{Logical; print processing info? Default from
+\code{getOption("fishr.verbose", FALSE)}.}
 
 \item{...}{Additional arguments passed to \code{cpue()} when computing from
 catch and effort (e.g., \code{method}, \code{gear_factor}).}
