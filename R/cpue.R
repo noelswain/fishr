@@ -6,7 +6,8 @@
 #' @param effort Numeric vector of effort (e.g., hours)
 #' @param gear_factor Numeric adjustment for gear standardization (default is 1)
 #' @param method Character; one of ratio" or "log"
-#' @param verbose Logical indicating whether to print processing messages (default is FALSE)
+#' @param verbose Logical; print processing info? Default from
+#'   `getOption("fishr.verbose", FALSE)`.
 #'
 #' @return A numeric vector of CPUE values
 #' @export

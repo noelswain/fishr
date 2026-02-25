@@ -10,9 +10,20 @@
 
     Code
       cpue(c(100, 200, 300), c(10, 20))
+    Message
+      Processing 3 recordsratiomethod
     Condition
       Warning in `catch / effort`:
       longer object length is not a multiple of shorter object length
     Output
       [1] 10 10 30
+
+# cpue uses verbosity when option set to TRUE
+
+    Code
+      cpue(100, 10)
+    Message
+      Processing 1 recordsratiomethod
+    Output
+      [1] 10
 
