@@ -4,6 +4,7 @@ test_that("cpue calculates simple ratio correctly", {
   expect_equal(cpue(catch = 50, effort = 2), 25)
 })
 
+
 test_that("cpue handles vectors of data", {
   catches <- c(100, 200, 300)
   efforts <- c(10, 10, 10)
@@ -11,6 +12,8 @@ test_that("cpue handles vectors of data", {
 
   expect_equal(cpue(catches, efforts), expected_results)
 })
+
+
 
 # test optional arguments
 test_that("gear_factor standardization scales correctly", {
@@ -21,11 +24,24 @@ test_that("gear_factor standardization scales correctly", {
   )
 })
 
+
+
+# basic snapshot test for errors:
+test_that("cpue errors when input is not numeric", {
+  expect_snapshot(
+    cpue("five", 10),
+    error = TRUE
+  )
+})
+
+
 # test edge cases
 test_that("cpue handles missing data", {
   expect_true(is.na(cpue(NA_real_, 10)))
   expect_true(is.na(cpue(100, NA_real_)))
 })
+
+
 
 # use helpers in tests e.g.,
 test_that("cpue works with generated data", {
@@ -40,9 +56,36 @@ test_that("cpue works with generated data", {
   )
 })
 
+
+
 # use setup objects in tests:
 test_that("cpue matches reference data", {
   result <- cpue(reference_data$catch, reference_data$effort)
 
   expect_equal(result, reference_data$expected_cpue)
+})
+
+
+
+test_that("cpue provides informative message when verbose", {
+  expect_message(
+    cpue(c(100, 200), c(10, 20), verbose = TRUE),
+    "Processing 2 records"
+  )
+})
+
+test_that("cpue is silent by default", {
+  expect_no_message(cpue(100, 10))
+})
+
+
+
+
+
+test_that("cpue warns when catch and effort lengths differ", {
+  expect_snapshot(
+    cpue(c(100, 200, 300), c(10, 20))
+  )
+
+  expect_no_warning(cpue(100, 10))
 })
