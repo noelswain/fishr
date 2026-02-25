@@ -9,7 +9,7 @@ cpue(
   effort,
   gear_factor = 1,
   method = c("ratio", "log"),
-  verbose = getOption("fishr.verbose", default = FALSE)
+  verbose = getOption("fishr.verbose", FALSE)
 )
 }
 \arguments{
@@ -21,15 +21,17 @@ cpue(
 
 \item{method}{Character; one of ratio" or "log"}
 
-\item{verbose}{Logical indicating whether to print processing messages (default is FALSE)}
+\item{verbose}{Logical; print processing info? Default from
+\code{getOption("fishr.verbose", FALSE)}.}
 }
 \value{
 A numeric vector of CPUE values
 }
 \description{
-Calculates CPUE from catch and effort data, with optional gear standardization.
+Calculates CPUE from catch and effort data, with optional gear
+standardization. Supports ratio and log-transformed methods.
 }
 \examples{
 cpue(100, 10)
-cpue(100, 10, gear_factor = 0.5)
+cpue(c(100, 200), c(10, 20), method = "log")
 }
