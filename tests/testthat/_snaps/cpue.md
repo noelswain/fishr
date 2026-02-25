@@ -4,7 +4,7 @@
       cpue("five", 10)
     Condition
       Error in `catch / effort`:
-      ! non-numeric argument to binary operator
+      ! 'area_swept' must be numeric, got character.
 
 # cpue warns when catch and effort lengths differ
 

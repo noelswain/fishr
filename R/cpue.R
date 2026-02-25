@@ -20,13 +20,17 @@ cpue <- function(catch,
                  method = c("ratio", "log"),
                  verbose = getOption("fishr.verbose", default = FALSE)
                  ) {
+  method <- match.arg(method)
+
+  validate_numeric_inputs(catch = catch, effort = effort)
+
   # side effect: prints a message
   if (verbose) {
-    message("Processing ", length(catch), " records")
+    message("Processing ", length(catch), " records", method, "method")
   }
-method <- match.arg(method)
+
   # Pure calculation
-raw_cpue <-switch(
+raw_cpue <- switch(
   method,
   ratio = catch / effort,
   log = log(catch / effort)
