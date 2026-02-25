@@ -3,8 +3,8 @@
     Code
       cpue("five", 10)
     Condition
-      Error in `catch / effort`:
-      ! non-numeric argument to binary operator
+      Error:
+      ! 'catch' must be numeric, got character.
 
 # cpue warns when catch and effort lengths differ
 
@@ -15,4 +15,13 @@
       longer object length is not a multiple of shorter object length
     Output
       [1] 10 10 30
+
+# cpue uses verbosity when option set to TRUE
+
+    Code
+      cpue(10, 10)
+    Message
+      Processing 1 records using ratio method
+    Output
+      [1] 1
 

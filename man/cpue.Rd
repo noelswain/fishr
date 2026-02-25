@@ -4,7 +4,13 @@
 \alias{cpue}
 \title{Calculate Catch Per Unit Effort (CPUE)}
 \usage{
-cpue(catch, effort, gear_factor = 1, verbose = FALSE)
+cpue(
+  catch,
+  effort,
+  gear_factor = 1,
+  method = c("ratio", "log"),
+  verbose = getOption("fishr.verbose", FALSE)
+)
 }
 \arguments{
 \item{catch}{Numeric vector of catch (e.g., kg)}
@@ -13,15 +19,19 @@ cpue(catch, effort, gear_factor = 1, verbose = FALSE)
 
 \item{gear_factor}{Numeric adjustment for gear standardization (default is 1)}
 
-\item{verbose}{Logical indicating whether to print processing messages (default is FALSE)}
+\item{method}{Character; one of ratio" or "log"}
+
+\item{verbose}{Logical; print processing info? Default from
+\code{getOption("fishr.verbose", FALSE)}.}
 }
 \value{
 A numeric vector of CPUE values
 }
 \description{
-Calculates CPUE from catch and effort data, with optional gear standardization.
+Calculates CPUE from catch and effort data, with optional gear
+standardization. Supports ratio and log-transformed methods.
 }
 \examples{
 cpue(100, 10)
-cpue(100, 10, gear_factor = 0.5)
+cpue(c(100, 200), c(10, 20), method = "log")
 }

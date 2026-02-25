@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/noelswain/fishr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/noelswain/fishr/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/noelswain/fishr/graph/badge.svg)](https://app.codecov.io/gh/noelswain/fishr)
 <!-- badges: end -->
 
 The goal of fishr is to provide functions for calculating Catch Per Unit Effort (CPUE),
