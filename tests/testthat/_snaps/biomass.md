@@ -3,14 +3,14 @@
     Code
       biomass_index("ten", 5)
     Condition
-      Error in `cpue * area_swept`:
-      ! 'area_swept' must be numeric, got character.
+      Error:
+      ! 'cpue' must be numeric, got character.
 
 ---
 
     Code
       biomass_index(10, "five")
     Condition
-      Error in `cpue * area_swept`:
+      Error:
       ! 'area_swept' must be numeric, got character.
 

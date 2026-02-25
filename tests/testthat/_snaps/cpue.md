@@ -3,8 +3,8 @@
     Code
       cpue("five", 10)
     Condition
-      Error in `catch / effort`:
-      ! 'area_swept' must be numeric, got character.
+      Error:
+      ! 'catch' must be numeric, got character.
 
 # cpue warns when catch and effort lengths differ
 
