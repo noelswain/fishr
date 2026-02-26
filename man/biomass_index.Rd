@@ -37,14 +37,13 @@ biomass_index(
 \value{
 A numeric vector the same length as \code{cpue}.
 
-A numeric vector of biomass index values
+A numeric vector the same length as \code{cpue}.
 
 Returns the same structure as \link[=cpue]{the CPUE function}.
 }
 \description{
 Calculates a biomass index by multiplying CPUE by area swept. Returns
 \code{NA} for any row where either input is \code{NA}.
-See \code{\link[=cpue]{cpue()}} for computing CPUE values from raw catch and effort.
 }
 \details{
 Two modes of use:
@@ -54,7 +53,6 @@ Two modes of use:
 }
 
 Any additional arguments in \code{...} are forwarded to \code{\link[=cpue]{cpue()}}.
-\code{\link[=validate_numeric_inputs]{validate_numeric_inputs()}} for the shared input validation logic.
 }
 \examples{
 # From pre-computed CPUE
@@ -73,4 +71,6 @@ biomass_index(
 }
 \seealso{
 \code{\link[=cpue]{cpue()}} to compute CPUE values from raw catch and effort.
+
+\code{\link[=validate_numeric_inputs]{validate_numeric_inputs()}} for the shared input validation logic.
 }
