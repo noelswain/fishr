@@ -14,29 +14,47 @@ biomass_index(
 )
 }
 \arguments{
-\item{cpue}{Numeric vector of CPUE values. If \code{catch} and \code{effort} are
-provided, this is computed automatically.}
+\item{cpue}{Numeric vector of CPUE values (units: kg/hr).}
 
-\item{area_swept}{Numeric vector of area swept (e.g., km²)}
+\item{area_swept}{Numeric vector of area swept in \strong{km^2^}.}
 
-\item{catch}{Optional numeric vector of catch. If provided with \code{effort},
-CPUE is computed via \code{cpue()}.}
+\item{catch}{Numeric vector of catch (e.g., kg)}
 
-\item{effort}{Optional numeric vector of effort. Required if \code{catch} is
-provided.}
+\item{effort}{Numeric vector of effort (e.g., hours)}
 
 \item{verbose}{Logical; print processing info? Default from
 \code{getOption("fishr.verbose", FALSE)}.}
 
-\item{...}{Additional arguments passed to \code{cpue()} when computing from
-catch and effort (e.g., \code{method}, \code{gear_factor}).}
+\item{...}{
+  Arguments passed on to \code{\link[=cpue]{cpue}}
+  \describe{
+    \item{\code{gear_factor}}{Numeric adjustment for gear standardization (default is 1)}
+    \item{\code{method}}{Character; one of ratio" or "log"}
+  }}
+
+\item{data}{A data frame. See \code{\link[dplyr:filter]{dplyr::filter()}} for subsetting rows.}
 }
 \value{
+A numeric vector the same length as \code{cpue}.
+
 A numeric vector of biomass index values
+
+Returns the same structure as \link[=cpue]{the CPUE function}.
 }
 \description{
-Calculates biomass index from CPUE and area swept. Can optionally
-compute CPUE from catch and effort data.
+Calculates a biomass index by multiplying CPUE by area swept. Returns
+\code{NA} for any row where either input is \code{NA}.
+See \code{\link[=cpue]{cpue()}} for computing CPUE values from raw catch and effort.
+}
+\details{
+Two modes of use:
+\itemize{
+\item Provide \code{cpue} directly for a simple calculation.
+\item Provide \code{catch} and \code{effort} to compute CPUE first, then scale by area.
+}
+
+Any additional arguments in \code{...} are forwarded to \code{\link[=cpue]{cpue()}}.
+\code{\link[=validate_numeric_inputs]{validate_numeric_inputs()}} for the shared input validation logic.
 }
 \examples{
 # From pre-computed CPUE
@@ -52,4 +70,7 @@ biomass_index(
   effort = c(10, 20),
   method = "log"
 )
+}
+\seealso{
+\code{\link[=cpue]{cpue()}} to compute CPUE values from raw catch and effort.
 }

@@ -1,21 +1,31 @@
 #' Calculate Biomass Index
 #'
-#' Calculates biomass index from CPUE and area swept. Can optionally
-#' compute CPUE from catch and effort data.
+#' Calculates a biomass index by multiplying CPUE by area swept. Returns
+#' `NA` for any row where either input is `NA`.
+#' See [cpue()] for computing CPUE values from raw catch and effort.
+#' @param cpue Numeric vector of CPUE values (units: kg/hr).
+#' @param area_swept Numeric vector of area swept in **km^2^**.
+#' @return A numeric vector the same length as `cpue`.
+#' @inheritParams cpue
+#' @inheritDotParams cpue -catch -effort
 #'
-#' @param cpue Numeric vector of CPUE values. If `catch` and `effort` are
-#'   provided, this is computed automatically.
-#' @param area_swept Numeric vector of area swept (e.g., km²)
-#' @param catch Optional numeric vector of catch. If provided with `effort`,
-#'   CPUE is computed via `cpue()`.
-#' @param effort Optional numeric vector of effort. Required if `catch` is
-#'   provided.
-#' @param verbose Logical; print processing info? Default from
-#'   `getOption("fishr.verbose", FALSE)`.
-#' @param ... Additional arguments passed to `cpue()` when computing from
-#'   catch and effort (e.g., `method`, `gear_factor`).
+#'@param data A data frame. See [dplyr::filter()] for subsetting rows.
 #'
+#' @details
+#' Two modes of use:
+#'
+#' - Provide `cpue` directly for a simple calculation.
+#' - Provide `catch` and `effort` to compute CPUE first, then scale by area.
+#'
+#' Any additional arguments in `...` are forwarded to [cpue()].
+#' [validate_numeric_inputs()] for the shared input validation logic.
 #' @return A numeric vector of biomass index values
+#'
+#' Returns the same structure as [the CPUE function][cpue()].
+#'
+#' @seealso [cpue()] to compute CPUE values from raw catch and effort.
+#'
+#'
 #' @export
 #'
 #' @examples
