@@ -50,7 +50,7 @@ test_that("cpue works with generated data", {
   result <- cpue(data$catch, data$effort)
 
   expect_equal(
-    result,
+    as.numeric(result),
     c(34.053, 9.065, 19.239, 135.640, 6.372),
     tolerance = 1e-3
   )

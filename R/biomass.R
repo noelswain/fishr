@@ -19,29 +19,16 @@
 #'
 #' Any additional arguments in `...` are forwarded to [cpue()].
 #'
-#' @return A numeric vector the same length as `cpue`.
-#'
 #' Returns the same structure as [the CPUE function][cpue()].
 #'
 #' @seealso [cpue()] to compute CPUE values from raw catch and effort.
-#' @seealso [validate_numeric_inputs()] for the shared input validation logic.
-#'
+#' @return A numeric vector the same length as `cpue`.
 #' @export
 #'
 #' @examples
-#' # From pre-computed CPUE
-#' biomass_index(cpue = 10, area_swept = 5)
+#' salmon_cpue <- cpue(catch = 2, effort = 2)
+#' biomass_index(salmon_cpue, 5)
 #'
-#' # Compute CPUE on the fly
-#' biomass_index(area_swept = 5, catch = 100, effort = 10)
-#'
-#' # Pass method through to cpue()
-#' biomass_index(
-#'   area_swept = 5,
-#'   catch = c(100, 200),
-#'   effort = c(10, 20),
-#'   method = "log"
-#' )
 biomass_index <- function(cpue = NULL,
                           area_swept,
                           catch = NULL,

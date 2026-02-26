@@ -38,8 +38,6 @@ biomass_index(
 A numeric vector the same length as \code{cpue}.
 
 A numeric vector the same length as \code{cpue}.
-
-Returns the same structure as \link[=cpue]{the CPUE function}.
 }
 \description{
 Calculates a biomass index by multiplying CPUE by area swept. Returns
@@ -53,24 +51,14 @@ Two modes of use:
 }
 
 Any additional arguments in \code{...} are forwarded to \code{\link[=cpue]{cpue()}}.
+
+Returns the same structure as \link[=cpue]{the CPUE function}.
 }
 \examples{
-# From pre-computed CPUE
-biomass_index(cpue = 10, area_swept = 5)
+salmon_cpue <- cpue(catch = 2, effort = 2)
+biomass_index(salmon_cpue, 5)
 
-# Compute CPUE on the fly
-biomass_index(area_swept = 5, catch = 100, effort = 10)
-
-# Pass method through to cpue()
-biomass_index(
-  area_swept = 5,
-  catch = c(100, 200),
-  effort = c(10, 20),
-  method = "log"
-)
 }
 \seealso{
 \code{\link[=cpue]{cpue()}} to compute CPUE values from raw catch and effort.
-
-\code{\link[=validate_numeric_inputs]{validate_numeric_inputs()}} for the shared input validation logic.
 }

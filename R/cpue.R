@@ -10,12 +10,11 @@
 #' @param verbose Logical; print processing info? Default from
 #'   `getOption("fishr.verbose", FALSE)`.
 #'
-#' @return A numeric vector of CPUE values
+#' @return A `cpue_result` object.
 #' @export
 #'
 #' @examples
-#' cpue(100, 10)
-#' cpue(c(100, 200), c(10, 20), method = "log")
+#' cpue(catch = c(100, 200, 300), effort = c(10, 20, 30))
 cpue <- function(
     catch,
     effort,
@@ -37,12 +36,18 @@ cpue <- function(
     log = log(catch / effort)
   )
 
-  result <- raw_cpue * gear_factor
-  attr(result, "gear_factor") <- gear_factor
-  attr(result, "n_records") <- length(catch)
-  attr(result, "method") <- method
-  class(result) <- "cpue_result"
-  result
+  # result <- raw_cpue * gear_factor
+  # attr(result, "gear_factor") <- gear_factor
+  # attr(result, "n_records") <- length(catch)
+  # attr(result, "method") <- method
+  # class(result) <- "cpue_result"
+  # result
+  new_cpue_result(
+    values = raw_cpue * gear_factor,
+    method = method,
+    gear_factor = gear_factor,
+    n_records = length(catch)
+  )
 }
 
 

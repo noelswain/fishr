@@ -7,7 +7,7 @@
 #'
 #' @return Invisible `NULL`. Called for its side effect of
 #'   stopping with an error if validation fails.
-#'
+#' @noRd
 validate_numeric_inputs <- function(...) {
   args <- list(...)
   arg_names <- names(args)

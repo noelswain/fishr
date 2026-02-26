@@ -25,13 +25,12 @@ cpue(
 \code{getOption("fishr.verbose", FALSE)}.}
 }
 \value{
-A numeric vector of CPUE values
+A \code{cpue_result} object.
 }
 \description{
 Calculates CPUE from catch and effort data, with optional gear
 standardization. Supports ratio and log-transformed methods.
 }
 \examples{
-cpue(100, 10)
-cpue(c(100, 200), c(10, 20), method = "log")
+cpue(catch = c(100, 200, 300), effort = c(10, 20, 30))
 }
