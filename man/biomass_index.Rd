@@ -54,6 +54,7 @@ Two modes of use:
 }
 
 Any additional arguments in \code{...} are forwarded to \code{\link[=cpue]{cpue()}}.
+\code{\link[=validate_numeric_inputs]{validate_numeric_inputs()}} for the shared input validation logic.
 }
 \examples{
 # From pre-computed CPUE
@@ -72,6 +73,4 @@ biomass_index(
 }
 \seealso{
 \code{\link[=cpue]{cpue()}} to compute CPUE values from raw catch and effort.
-
-\code{\link[=validate_numeric_inputs]{validate_numeric_inputs()}} for the shared input validation logic.
 }
