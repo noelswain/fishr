@@ -18,13 +18,13 @@
 #' - Provide `catch` and `effort` to compute CPUE first, then scale by area.
 #'
 #' Any additional arguments in `...` are forwarded to [cpue()].
-#'
+#' [validate_numeric_inputs()] for the shared input validation logic.
 #' @return A numeric vector of biomass index values
 #'
 #' Returns the same structure as [the CPUE function][cpue()].
 #'
 #' @seealso [cpue()] to compute CPUE values from raw catch and effort.
-#' @seealso [validate_numeric_inputs()] for the shared input validation logic.
+#'
 #'
 #' @export
 #'
