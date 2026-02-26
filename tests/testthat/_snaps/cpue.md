@@ -44,3 +44,19 @@
       Gear factor:  1 
       Values:       10 10 20 
 
+# cpue.data.frame errors on missing columns
+
+    Code
+      cpue(df)
+    Condition
+      Error:
+      ! Column 'catch' not found in data frame.
+
+# cpue.default gives informative error
+
+    Code
+      cpue("not valid")
+    Condition
+      Error:
+      ! Unsupported input type for cpue(): character
+

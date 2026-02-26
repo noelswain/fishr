@@ -125,3 +125,24 @@ test_that("print.cpue_result displays expected output", {
   result <- cpue(c(100, 200, 300), c(10, 20, 15))
   expect_snapshot(print(result))
 })
+
+
+
+test_that("cpue.data.frame dispatches correctly", {
+  fishing_data <- data.frame(
+    catch = c(100, 200, 300),
+    effort = c(10, 20, 15)
+  )
+  result <- cpue(fishing_data)
+  expect_s3_class(result, "cpue_result")
+  expect_equal(as.numeric(result), c(10, 10, 20))
+})
+
+test_that("cpue.data.frame errors on missing columns", {
+  df <- data.frame(x = 1, y = 2)
+  expect_snapshot(cpue(df), error = TRUE)
+})
+
+test_that("cpue.default gives informative error", {
+  expect_snapshot(cpue("not valid"), error = TRUE)
+})
