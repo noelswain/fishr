@@ -16,7 +16,9 @@ cpue <- function(catch, ...) {
 #' @rdname cpue
 #'
 #' @param effort Numeric vector of effort (e.g., hours)
-#' @param gear_factor Numeric scalar for gear standardization (default 1)
+#' @param gear_type Character. Gear type used for sampling. Must be one of the
+#'   types in the internal `gear_types` table. Defaults to `"nordic_gillnet"`,
+#'   the standard reference gear (factor = 1.0).
 #' @param method Character; one of `"ratio"` (default) or `"log"`.
 #' @param verbose Logical; print processing info? Default from
 #'   `getOption("fishr.verbose", FALSE)`.
@@ -30,11 +32,21 @@ cpue <- function(catch, ...) {
 cpue.numeric <- function(
     catch,
     effort,
-    gear_factor = 1,
+    gear_type = "nordic_gillnet",
     method = c("ratio", "log"),
     verbose = getOption("fishr.verbose", FALSE),
     ...
 ) {
+  if (!gear_type %in% gear_types$gear_type) {
+    stop(
+      "`gear_type` must be one of: ",
+      paste(gear_types$gear_type, collapse = ", "),
+      call. = FALSE
+    )
+  }
+
+  gear_factor <- gear_types$gear_factor[gear_types$gear_type == gear_type]
+
   method <- match.arg(method)
 
   validate_numeric_inputs(catch = catch, effort = effort)
@@ -63,7 +75,7 @@ cpue.numeric <- function(
 #' @export
 cpue.data.frame <- function(
     catch,
-    gear_factor = 1,
+    gear_type = "nordic_gillnet",
     method = c("ratio", "log"),
     verbose = getOption("fishr.verbose", FALSE),
     ...
@@ -80,7 +92,7 @@ cpue.data.frame <- function(
   cpue(
     catch = catch[["catch"]],
     effort = catch[["effort"]],
-    gear_factor = gear_factor,
+    gear_type = gear_type,
     method = method,
     verbose = verbose,
     ...
