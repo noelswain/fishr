@@ -29,7 +29,9 @@ and \code{effort}.}
 \item{...}{
   Arguments passed on to \code{\link[=cpue.numeric]{cpue.numeric}}
   \describe{
-    \item{\code{gear_factor}}{Numeric scalar for gear standardization (default 1)}
+    \item{\code{gear_type}}{Character. Gear type used for sampling. Must be one of the
+types in the internal \code{gear_types} table. Defaults to \code{"nordic_gillnet"},
+the standard reference gear (factor = 1.0).}
     \item{\code{method}}{Character; one of \code{"ratio"} (default) or \code{"log"}.}
   }}
 }
